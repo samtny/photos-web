@@ -5,7 +5,8 @@ requirejs.config({
     'bootstrap': '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min',
     'knockout': '//cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min',
     'jquery': '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min',
-    'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min'
+    'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min',
+    'jwplayer': '//jwpsrv.com/library/bEYiyJzLEeS0rRJtO5t17w'
   },
   shim: {
     bootstrap: {
@@ -16,6 +17,9 @@ requirejs.config({
     },
     underscore: {
       exports: '_'
+    },
+    jwplayer: {
+      exports: 'jwplayer'
     }
   }
 });

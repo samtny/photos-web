@@ -5,7 +5,8 @@ define(['knockout'], function (ko) {
     resource.name = data.name;
     resource.type = ko.observable(data.type);console.log('type', resource.type());
     resource.thumb = ko.observable(dimensions || '200x200');
-    resource.src = ko.observable(host + '/resource?resource_id=' + data['_id']['$id'] + '&derivative=__thumbs/' + resource.thumb());
+    resource.original = ko.observable(host + '/resource?resource_id=' + data['_id']['$id']);
+    resource.src = ko.observable(resource.original() + '&derivative=__thumbs/' + resource.thumb());
     resource.alt = ko.observable(data['filename']);
 
     resource.selected = ko.observable(false);

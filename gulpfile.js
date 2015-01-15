@@ -38,7 +38,7 @@ gulp.task('endpoints', ['clean'], function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(paths.js.concat(paths.css).concat(paths.html), ['copy']);
+  gulp.watch(paths.js.concat(paths.css).concat(paths.html), ['copy', 'endpoints']);
 });
 
 gulp.task('default', ['clean', 'copy', 'endpoints', 'watch']);

@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'knockout', './FolderViewModel', './ResourceViewModel'], function ($, _, ko, folderViewModel, resourceViewModel) {
+define(['jquery', 'underscore', 'knockout', 'jwplayer', './FolderViewModel', './ResourceViewModel'], function ($, _, ko, jwplayer, folderViewModel, resourceViewModel) {
   return function mainViewModel(options) {
     var main = this,
       resourceWidth = 214,
@@ -28,6 +28,19 @@ define(['jquery', 'underscore', 'knockout', './FolderViewModel', './ResourceView
     main.resourceClick = function (resource) {
       resource.selected(!resource.selected());
       main.preview(new resourceViewModel(resource.data, main.host, '722x722'));
+
+      console.log('preview', ko.toJSON(main.preview));
+
+      if (main.preview().type() === 'Video') {
+        jwplayer('player').setup({
+          file: main.preview().original(),
+          type: 'mp4',
+          image: main.preview().src(),
+          width: 722,
+          aspectratio: '4:3'
+        });
+      }
+
       main.initLayout();
     };
 
