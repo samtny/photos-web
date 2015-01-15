@@ -86,12 +86,18 @@
 <script type="text/html" id="resource-template">
   <div class="resource noselect" data-bind="event: { click: $root.resourceClick }, css: { selected: selected() }">
     <img data-bind="attr: { src: src, alt: alt }" class="img" draggable="false" width="200px" height="200px" />
-    <span data-bind="text: name"></span>
+    <span data-bind="visible: type() == 'Video'" class="play"></span>
+    <span data-bind="text: name" class="name"></span>
   </div>
 </script>
 
 <script type="text/html" id="preview-template">
   <div class="preview noselect" data-bind="with: preview">
-    <img data-bind="attr: { src: src, alt: alt }" class="img" draggable="false" />
+    <!-- ko if: type() == 'Image' -->
+      <img data-bind="attr: { src: src, alt: alt }" class="img" draggable="false" />
+    <!-- /ko -->
+    <!-- ko if: type() == 'Video' -->
+      <img data-bind="attr: { src: src, alt: alt }" class="img" draggable="false" />
+    <!-- /ko -->
   </div>
 </script>

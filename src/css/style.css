@@ -50,12 +50,41 @@ div.resource:hover:not(.selected) {
 
 div.resource span {
   position: absolute;
-  bottom: 0;
   opacity: 0;
 }
 
 div.resource:hover span {
   opacity: 1;
+}
+
+div.resource span.name {
+  bottom: 0;
+}
+
+div.resource span.play {
+  bottom: 84px;
+  left: 84px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: grey;
+  opacity: 0.7;
+}
+
+div.resource span.play:before, div.resource span.play:after {
+  content: ' ';
+  height: 0;
+  position: absolute;
+  width: 0;
+  border: 10px solid transparent;
+}
+
+div.resource span.play:before {
+  border-left-color: #ccc;
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  z-index: 2;
 }
 
 .preview-wrapper {

@@ -4,19 +4,19 @@ var template = require('gulp-template');
 
 var bases = {
   src: 'src/',
-  dist: 'dist/',
-  templates: 'templates/'
+  dist: 'dist/'
 };
 
 var paths = {
-  js: [ bases.src + 'js/**/*.js'],
-  css: [ bases.src + 'css/**/*.css'],
-  html: [ bases.src + 'index.html', '!' + bases.src + 'test.html']
+  endpoints: [ bases.src + 'config/endpoints.js' ],
+  js: [ bases.src + 'js/**/*.js' ],
+  css: [ bases.src + 'css/**/*.css' ],
+  html: [ bases.src + 'index.html', '!' + bases.src + 'test.html' ]
 };
 
 gulp.task('clean', function(cb) {
   del([
-    bases.dist + '**'
+    bases.dist + '*'
   ], cb);
 });
 
@@ -31,14 +31,14 @@ gulp.task('copy', ['clean'], function() {
     .pipe(gulp.dest(bases.dist));
 });
 
-gulp.task('default', ['clean', 'copy'], function() {
-  return gulp.src(bases.templates + '/endpoints.js')
-    .pipe(template({ api_endpoint: 'https://api.photos.com' }))
-    .pipe(gulp.dest(bases.dist + 'js/app/'));
-});
-
-gulp.task('local', ['clean', 'copy'], function() {
-  return gulp.src(bases.templates + '/endpoints.js')
+gulp.task('endpoints', ['clean'], function() {
+  return gulp.src(paths.endpoints)
     .pipe(template({ api_endpoint: 'https://local.api.photos.com' }))
     .pipe(gulp.dest(bases.dist + 'js/app/'));
 });
+
+gulp.task('watch', function () {
+  gulp.watch(paths.js.concat(paths.css).concat(paths.html), ['copy']);
+});
+
+gulp.task('default', ['clean', 'copy', 'endpoints', 'watch']);
