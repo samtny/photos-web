@@ -29,15 +29,13 @@ define(['jquery', 'underscore', 'knockout', 'jwplayer', './FolderViewModel', './
       resource.selected(!resource.selected());
       main.preview(new resourceViewModel(resource.data, main.host, '722x722'));
 
-      console.log('preview', ko.toJSON(main.preview));
-
       if (main.preview().type() === 'Video') {
         jwplayer('player').setup({
           file: main.preview().original(),
           type: 'mp4',
           image: main.preview().src(),
-          width: 722,
-          aspectratio: '4:3'
+          width: '100%',
+          aspectratio: '16:9'
         });
       }
 

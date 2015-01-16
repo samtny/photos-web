@@ -33,7 +33,7 @@ div.resource {
   border: 1px solid transparent;
   margin: 2px;
   width: 210px;
-  height: 210px;
+  height: auto;
   padding: 4px;
   text-align: center;
   border-radius: 2px;
@@ -62,13 +62,14 @@ div.resource span.name {
 }
 
 div.resource span.play {
-  bottom: 84px;
-  left: 84px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: grey;
   opacity: 0.7;
+  left: 86px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 div.resource span.play:before, div.resource span.play:after {
