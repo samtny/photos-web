@@ -39,7 +39,7 @@ define(['jquery', 'underscore', 'knockout', 'jwplayer', './FolderViewModel', './
         });
       }
 
-      main.initLayout();
+      main.initLayoutDebounced();
     };
 
     main.folderClick = function (folder) {
@@ -64,6 +64,7 @@ define(['jquery', 'underscore', 'knockout', 'jwplayer', './FolderViewModel', './
         url: main.host + '/resource_list',
         data: data
       })
+        .done(main.initLayoutDebounced)
         .done(main.addResources);
     };
 
@@ -86,8 +87,8 @@ define(['jquery', 'underscore', 'knockout', 'jwplayer', './FolderViewModel', './
     main.initLayoutDebounced = _.debounce(main.initLayout, debounceLayout);
 
     main.init = function () {
-      main.initLayout();
       window.onresize = main.initLayoutDebounced;
+
       main.getFolders({ parent: '' });
     };
 
